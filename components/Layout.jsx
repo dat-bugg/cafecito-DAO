@@ -1,10 +1,168 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import { useState } from 'react';
+import { ethers } from 'ethers';
+import Web3 from 'web3';
+import Nav from './Nav';
 
 const Layout = ({ children }) => {
 
     const [walletAddress, setWalletAddress] = useState('');
+
+    async function load() {
+        await loadWeb3();
+        window.contract = await loadContract();
+    }
+
+    async function loadWeb3() {
+        if (window.ethereum) {
+            window.web3 = new Web3(window.ethereum);
+            window.ethereum.enable();
+        }
+    }
+
+    const handleClick = async () => {
+        if (window.ethereum === 'undefined') {
+            console.log("Metamask not installed");
+            return;
+        }
+
+        load();
+
+        await window.ethereum.send('eth_requestAccounts');
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        console.log(address);
+        setWalletAddress(address);
+
+        let _hash = "Hash";
+        let _metaHash = "MetaHash";
+
+        console.log("walletAddress: " + walletAddress);
+        // const mint = await window.contract.methods.mint(address,_hash, _metaHash).send({ from: address });
+        console.log(mint);
+
+    }
+
+    const shortenAddress = (str) => {
+        return str.substring(0, 3) + ".." + str.substring(str.length - 3);
+    }
+
+    async function loadContract() {
+        return await new window.web3.eth.Contract(
+            [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "contract CafecitoCurve",
+                            "name": "_cafecitoCurve",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "contract CafecitoToken",
+                            "name": "_cafecitoToken",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "burn",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "cafecitoCurve",
+                    "outputs": [
+                        {
+                            "internalType": "contract CafecitoCurve",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "cafecitoToken",
+                    "outputs": [
+                        {
+                            "internalType": "contract CafecitoToken",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "liquidity",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "user",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_hash",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "metadata",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "mint",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "treasuryFunds",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            
+        ], '0xCA6351B2D69dA0c83a74Dc9e02D4D86BBc10f976');
+    }
+
+    async function mint() {
+        const mintConst = await window.contract.methods.treasuryFunds().send({ from: walletAddress });
+    }
 
     return (
         <div className='w-screen h-screen bg-[#5E28BA] overflow-hidden'>
@@ -14,39 +172,8 @@ const Layout = ({ children }) => {
                 <link rel="icon" href="/cafecito.png" />
             </Head>
 
-            <nav className='w-full h-20 bg-[#FFE9D2] absolute top-0 flex items-center justify-between px-20'>
-                <Link href='/'>
-                    <img src="/logo.svg" alt="" />
-                </Link>
-
-                <div className='flex items-center gap-4'>
-                    <Link href='/forum'>
-                        <a className='font-baloo font-bold text-base text-[#AA7364] hover:text-[#754B40]' href="#">Forum</a>
-                    </Link>
-                    <Link href='/proposal'>
-                        <a className='font-baloo font-bold text-base text-[#AA7364] hover:text-[#754B40]' href="#">Proposal</a>
-                    </Link>
-
-                    {  walletAddress ==='' &&
-
-                    <button className='px-4 py-2 font-baloo font-bold text-base text-[#AA7364] bg-white rounded-[16px] hover:text-[#754B40] flex items-center gap-4'>
-                        <img className='w-[20px] h-[20px]' src="/metamask.svg" alt="" />
-                        Connect Wallet
-                    </button>
-                    }
-
-                    {
-                        walletAddress !== '' &&
-                        <div className='flex items-center gap-2 px-4 py-2 bg-white rounded-[16px] border-2 border-[#754B40]'>
-                            <div className='w-8 h-8'>
-                                <img className='w-full h-full object-cover rounded-full' src="/dp.png" alt="" />
-                            </div>
-                            <p className='font-baloo font-bold text-[#754B40] text-base'>0x2..s4d</p>
-                        </div>
-
-                    }
-                </div>
-            </nav>
+            <Nav />
+        
             {children}
         </div>
     );
