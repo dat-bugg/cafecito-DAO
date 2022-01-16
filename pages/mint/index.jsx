@@ -20,7 +20,7 @@ const svgPath2 = getSvgPath({
 
 
 
-const index = () => {
+const Index = () => {
 
     const [mint, setMint] = useState('');
 
@@ -53,4 +53,4 @@ const index = () => {
     );
 }
 
-export default index;
+export default Index;

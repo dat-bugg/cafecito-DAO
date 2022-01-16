@@ -16,7 +16,7 @@ const svgPath2 = getSvgPath({
     cornerRadius: 46,
     cornerSmoothing: 1
 });
-const index = () => {
+const Index = () => {
 
     const [add, setAdd] = useState('');
     
@@ -50,4 +50,4 @@ const index = () => {
     );
 }
 
-export default index;
+export default Index;

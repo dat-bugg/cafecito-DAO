@@ -15,7 +15,7 @@ const svgPath2 = getSvgPath({
     cornerRadius: 46,
     cornerSmoothing: 1
 });
-const index = () => {
+const Index = () => {
     return (
         <Layout>
             <main className='w-screen h-screen flex flex-col items-center justify-center'>
@@ -45,4 +45,4 @@ const index = () => {
     );
 }
 
-export default index;
+export default Index;
