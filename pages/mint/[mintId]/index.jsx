@@ -29,8 +29,8 @@ const index = () => {
                     <div className='flex flex-col items-center gap-1'>
                         <p className="text-[#5E28BA] leading-3 font-baloo font-bold text-center">
                             <span className="text-lg">
-                                azúcar!
-                            </span> <br />Succesfully Minted an NFT🎉<br />
+                                azúcar!🎉
+                            </span> <br />Succesfully Minted an NFT<br />
                             <span className="text-sm text-[#AA7364]">(Check your wallet)</span>
                         </p>
 
