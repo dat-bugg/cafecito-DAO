@@ -31,12 +31,12 @@ const index = () => {
                             <span className="text-sm text-[#AA7364]">(Check your wallet)</span>
                         </p>
                         <Link href="/mint">
-                        <button className='mt-2 px-4 py-1 font-baloo font-bold text-base text-[#AA7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40]'>
+                        <button className='mt-2 px-4 py-1 font-baloo font-bold text-base hover:text-[#754B40] hover:border-[#aa7364] text-[#AA7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40]'>
                             Mint Again?
                         </button>
                         </Link>
                         <Link href="/">
-                        <a className='font-baloo font-bold text-base text-[#AA7364]' href="#">No, Thanks!</a>
+                        <a className='font-baloo font-bold text-base text-[#AA7364] hover:text-[#754B40]' href="#">No, Thanks!</a>
                         </Link>
                     </div>
                 </div>

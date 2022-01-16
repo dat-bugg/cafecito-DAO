@@ -31,12 +31,12 @@ export default function Home() {
 
           <div className='flex flex-col items-center gap-2'>
           <Link href='/mint'>
-            <button className='px-4 py-1 font-baloo font-bold text-base text-[#AA7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40]'>
+            <button className='px-4 py-1 font-baloo font-bold text-base text-[#AA7364] bg-[#FFE9D2] hover:text-[#754B40] hover:border-[#AA7364] rounded-[16px] border-[3px] border-[#754B40]'>
               Mint An NFT
             </button>
           </Link>
           <Link href='/burn'>
-            <a className='font-baloo font-bold text-base text-[#AA7364]' >Burn an NFT</a>
+            <a className='font-baloo font-bold text-base text-[#AA7364] hover:text-[#754B40]' >Burn an NFT</a>
           </Link>
           </div>
         </div>

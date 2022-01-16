@@ -38,7 +38,7 @@ const index = () => {
                         <div className="flex flex-col items-center gap-4 self-center mx-auto w-full justify-center">
                             <input onChange={(e) => setAdd(e.target.value) } className="font-baloo text-center text-[#754B40] font-bold bg-[#FFE9D2] rounded-[16px] py-2 px-2 w-[80%]" type="text" placeholder="Predefined" />
                             
-                            <button onClick={handleClick} className='px-4 py-1 font-baloo font-bold text-base text-[#AA7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40] w-[80%]'>
+                            <button onClick={handleClick} className='px-4 py-1 font-baloo font-bold text-base text-[#AA7364] hover:text-[#754B40] hover:border-[#aa7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40] w-[80%]'>
                                 Burn
                             </button>
                             

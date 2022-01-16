@@ -41,7 +41,7 @@ const index = () => {
 
                         <div className="flex items-center gap-2 self-center mx-auto w-full justify-center">
                             <input onChange={(e) => setMint(e.target.value)} className="font-baloo text-center text-[#754B40] font-bold bg-[#FFE9D2] rounded-[16px] py-2 px-2 w-[50%]" type="number" placeholder="Mint Price:" />
-                            <button onClick={handleMint} className='px-4 py-1 font-baloo font-bold text-base text-[#AA7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40] w-[40%]'>
+                            <button onClick={handleMint} className='px-4 py-1 font-baloo font-bold text-base text-[#AA7364] hover:text-[#754B40] hover:border-[#aa7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40] w-[40%]'>
                                 Mint
                             </button>
 

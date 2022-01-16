@@ -32,12 +32,12 @@ const index = () => {
                         </p>
 
                         <Link href='/mint'>
-                        <button className='mt-2 px-4 py-1 font-baloo font-bold text-base text-[#AA7364] bg-[#FFE9D2] rounded-[16px] border-[3px] border-[#754B40]'>
+                        <button className='mt-2 px-4 py-1 font-baloo font-bold text-base text-[#AA7364] bg-[#FFE9D2] hover:text-[#754B40] hover:border-[#aa7364] rounded-[16px] border-[3px] border-[#754B40]'>
                             Mint Another
                         </button>
                         </Link>
                         <Link href='/'>
-                        <a className='font-baloo font-bold text-base text-[#AA7364]' >No, Thanks!</a>
+                        <a className='font-baloo font-bold text-base text-[#AA7364] hover:text-[#754B40]' >No, Thanks!</a>
                         </Link>
                     </div>
                 </div>
